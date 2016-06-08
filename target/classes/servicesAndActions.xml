@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="datasourceAndDaos.xml"></import>
+	
+	<!--配置service 
+	=========================================================================================== -->
+	<bean id="serviceTemplate" abstract="true">
+		<property name="VoronoiDao" ref="VoronoiDao"></property>
+		<property name="CellDao" ref="CellDao"></property>
+		<property name="RegionDao" ref="RegionDao"></property>
+	</bean>
+	
+	<bean id="VoronoiDrawService" class="services.Impl.VoronoiDrawServiceImpl" parent="serviceTemplate">
+		<property name="TimestampDao" ref="TimestampDao"></property>
+	</bean>
+	
+	<bean id="SearchService" class="services.Impl.SearchServiceImpl" parent="serviceTemplate"></bean>
+	
+	<bean id="MigrateService" class="services.Impl.MigrateServiceImpl">
+		<property name="CountyDao" ref="CountyDao"></property>
+	</bean>
+	
+	<bean id="UpdateVoronoiService" class="services.Impl.UpdateVoronoiServiceImpl">
+		<property name="VoronoiDao" ref="VoronoiDao"></property>
+		<property name="TimestampDao" ref="TimestampDao"></property>
+	</bean>
+	
+	
+	
+	<!-- 配置action 
+   =================================================================================== -->
+	<!-- 制作VoronoiDraw.html模板action -->
+	<bean id="VBaseAction" abstract="true" scope="prototype">
+		<property name="VoronoiDrawService" ref="VoronoiDrawService"></property>
+	</bean>
+	
+	<!-- 制作SearchBS.html模板action -->
+	<bean id="SBaseAction" abstract="true" scope="prototype">
+		<property name="SearchService" ref="SearchService"></property>
+	</bean>
+	
+	<!-- 制作伪Action -->
+	<bean id="VoronoiDrawAction" class="actions.extend.VoronoiDraw.VoronoiDrawAction" parent="VBaseAction"></bean>
+	<bean id="CellidInfoAction" class="actions.extend.VoronoiDraw.CellidInfoAction" parent="VBaseAction"></bean>
+	<bean id="RegionAction" class="actions.extend.VoronoiDraw.RegionAction" parent="VBaseAction"></bean>
+	<bean id="DivRegionAction" class="actions.extend.VoronoiDraw.DivRegionAction" parent="VBaseAction"></bean>
+	<bean id="PartVoronoiDrawAction" class="actions.extend.VoronoiDraw.PartVoronoiDrawAction" parent="VBaseAction"></bean>
+	<bean id="AddBSAction" class="actions.extend.VoronoiDraw.AddBSAction" parent="VBaseAction"></bean>
+	<bean id="TimestampAction" class="actions.extend.VoronoiDraw.TimeStampAction" parent="VBaseAction"></bean>
+	
+	
+	
+	<bean id="CellInfoSearchAction" class="actions.extend.SearchBS.CellInfoSearchAction" parent="SBaseAction"></bean>
+	<bean id="Select2CellAction" class="actions.extend.SearchBS.Select2CellAction" parent="SBaseAction"></bean>
+	<bean id="S2ByNamesArrayAction" class="actions.extend.SearchBS.Select2ByNamesArrayAction" parent="SBaseAction"></bean>
+	<bean id="DeleteBSAction" class="actions.extend.SearchBS.DeleteBSAction" parent="SBaseAction"></bean>
+	
+	
+	<bean id="CountyAction" class="actions.extend.Migrate.CountyAction" scope="prototype">
+		<property name="MigrateService" ref="MigrateService"></property>
+	</bean>
+	
+	
+</beans>

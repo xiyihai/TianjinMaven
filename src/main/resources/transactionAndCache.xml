@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+		
+	<import resource="datasourceAndDaos.xml"/>
+	<import resource="servicesAndActions.xml"/>	
+	
+	<!--依赖注入hibernate操作事务所需SessionFactory-Bean -->
+	<bean id="transactionManager" 
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 配置事务增强处理，指定事务管理器 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"></tx:method>
+			<tx:method name="*"></tx:method>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 配置AOP -->
+	<aop:config>
+		<!-- 配置切入点 execution(* services.impl.*.*(..))-->
+		<aop:pointcut id="servicePointcut" expression="bean(VoronoiDrawService)||bean(MigrateService)||bean(SearchService)||bean(UpdateVoronoiService)"></aop:pointcut>
+		<!-- 在切入点需要使用的增强处理 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePointcut"></aop:advisor>
+	</aop:config>
+	
+	
+	
+	<!-- 配置缓存机制 -->
+	
+	<!-- 通知spring需根据注解来启动缓存："cacheManager"是默认值，也可以不写，代表xml中缓存管理器id -->
+	<cache:annotation-driven cache-manager="cacheManager"></cache:annotation-driven>
+	 
+	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="shared" value="true"></property>
+		<property name="configLocation" value="classpath:ehcache.xml"></property>
+	</bean>
+	
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehCacheManager"></property>
+	</bean>
+	
+	
+</beans>

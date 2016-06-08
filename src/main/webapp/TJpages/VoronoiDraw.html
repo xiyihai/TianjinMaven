@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>移动大数据可视化</title>
+	<link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Location Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+		Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+	<script src="js/jquery/dist/jquery.min.js"></script>
+	<script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
+	<link href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" rel="stylesheet" type="text/css">
+
+	<style type="text/css">
+		/*定义画布大小*/
+		.SvgOverlay svg {
+			position: absolute;
+			top: -4000px;
+			left: -4000px;
+			width: 8000px;
+			height: 8000px;
+		}
+	</style>
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=GKdQhXE5uZTCn0N33qajur0g"></script>
+
+	<!-- Mega Menu -->
+	<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="js/megamenu.js"></script>
+	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+	<!-- Mega Menu -->
+</head>
+<body>
+	<!-- banner -->
+	<div class="header">
+		<div class="container">
+			<div class="logo">
+				<a href="VoronoiDraw.html"><img src="images/logo.png" class="img-responsive" alt=""></a>
+			</div>
+
+			<div class="clearfix"></div>
+		</div>
+	</div>
+
+	<div class="header-bottom">
+		<div class="container">
+			<div class="top-nav">
+				<span class="menu"> </span>
+					<ul class="navig megamenu skyblue">
+
+						<li><a href="#" class="scroll" onclick="return false;"><span> </span>移动基站图层</a>
+							<div class="megapanel">
+								<div class="na-left">
+									<ul class="grid-img-list">
+										<li><a href="#" id="voronoiAll" onclick="return false;">全局基站图层</a></li> |
+										<li><a href="#" id="voronoiPart" onclick="return false;">局部基站图层</a></li> |
+										<li><a href="#" id="heatmap" onclick="return false;">热力图</a></li> |
+										<li><a href="addbaseStation.html">增加基站信息</a></li>
+										<div class="clearfix"> </div>	
+									</ul>
+								</div>
+								<div class="clearfix"> </div>	
+		    				</div>
+						</li>
+
+						<li><a href="SearchBS.html" class="scroll"> <span class="service"> </span>基站搜索</a>
+							<div class="megapanel">
+								<div class="na-left">
+									<ul class="grid-img-list">
+										<li><a href="SearchBS.html">人流变化预测</a></li> |
+										<li><a href="DeleteBS.html">搜索并删除基站信息</a></li> |
+										<div class="clearfix"> </div>
+									</ul>
+								</div>
+							<div class="clearfix"> </div>
+						</li>
+
+						<li><a href="MigratePage.html" class="scroll"><span class="mail"> </span>人口迁移图</a></li>
+
+						<li><a href="#" id="divDraw" class="scroll" onclick="return false;"><span> </span>划定关注区域</a>
+							<div class="megapanel">
+								<div class="na-left">
+									<ul class="grid-img-list">
+										<li><a href="#" id="DIVsave" onclick="return false;">保存</a></li> |
+										<li><a href="#" id="DIVcancel" onclick="return false;">取消</a></li>
+										<div class="clearfix"> </div>
+									</ul>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+						</li>
+
+						<li><a href="HistorySearch.html" class="scroll"><span class="mail"> </span>历史数据查询</a></li>
+
+						<div class="clearfix"></div>
+					</ul>
+					<script>
+						$("span.menu").click(function(){
+							$(".top-nav ul").slideToggle(300, function(){
+							});
+						});
+					</script>
+			</div>
+			<div class="head-right">
+				<ul class="number">
+					<li><a id= "clearMap" href="#" onclick="return false;"><i class="roc"></i>清空地图</a></li>
+					<div class="clearfix"> </div>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>	
+		</div>
+	</div>
+
+	<div class="banner" style="width: 100%">
+		<div id="mapCanvas" style="border: 0;width: 100%"></div>
+	</div>
+
+	<div class="banner-info">
+		<div class="container">
+			<div class="reservation">
+				<ul>	
+					<li class="boo">
+						<span>1</span><h4>天津市各大景点信息</h4>
+						<div class="clearfix"></div>						
+					</li>					  
+					<li class="boo">
+						<span>2</span><h4>景区覆盖范围内拥挤情况</h4>
+						<div class="clearfix"></div>
+					</li>
+					<li class="span1_of_1">
+						<!----------start section_room----------->
+							<div class="section_room">
+								<select id="regionsSelect" class="frm-field required">
+									<!--这里的option利用后台加载数据库中数据形成-->
+								</select>
+							</div>	
+					</li>
+					<li class="span1_of_3">
+						<div class="date_btn">
+							<form action="#">
+								<input id="regionBegin" type="submit" value="点击搜索" onclick="return false;">
+							</form>
+						</div>
+					</li>
+					<div class="clearfix"></div>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="loc-lov" style="position: fixed;top: 153px;right:1%">
+		<div class="container" style="width: 450px">
+			<div class="loc-left" style="float:right">
+				<ul>
+					<li><a href="#"><i class="adm"></i></a></li>
+					<li><a href="#"><i class="set"></i></a></li>
+					<li><a href="#"><i class="str"></i></a></li>
+					<li><a href="#"><i class="plc"></i></a></li>
+					<li><a href="#"><i class="plus"></i></a></li>
+					<div class="clearfix"> </div>
+				</ul>
+			</div>
+			<div class="loc-right" style="padding: 1em">
+				<div id="BStable" class="loc-top">
+					<h3>基站具体信息情况</h3>
+					<p>这里展示了基站编号,名称,类别,覆盖区域,归属地区以及人数... </p>
+
+					<!--这里需要根据点击产生的数据进行添加 div li 元素-->
+					<div class="ball" style="padding: 0.5em">
+						<li class="wicked">编号/名称</li>
+						<li class="mullet">类别/覆盖区/行政区</li>
+						<li class="see">人数</li>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="container">
+			<div class="col-md-2 abo-foo1">
+				<h5>关于我们</h5>
+					<ul>
+						<li><a href="404.html">关于我们</a></li>
+						<li><a href="404.html">如何联系</a></li>
+						<li><a href="404.html">请求帮助</a></li>
+					</ul>
+			</div>
+			<div class="col-md-3 abo-foo">
+				<h5>操作说明</h5>
+					<ul>
+						<li><a href="about.html">基站图层使用说明</a></li>
+						<li><a href="about.html">基站搜索说明</a></li>
+						<li><a href="about.html">历史数据查询说明</a></li>
+						<li><a href="about.html">划定特定景区说明</a></li>
+						<li><a href="about.html">人口迁移图说明</a></li>
+					</ul>
+			</div>
+			<div class="col-md-2 abo-foo1">
+				<h5>地理位置</h5>
+				<p> 清华大学</p>
+				<p>	北京市海淀区</p>
+				<p>	东主楼10区 205</p>
+				<p>	Tel: 888-888-88888</p>
+			</div>
+			<div class="col-md-2 abo-foo1">
+			<h5>讨论专区</h5>
+			<ul>
+				<li><a href="404.html">评论</a></li>
+				<li><a href="404.html">发布版本信息</a></li>
+				<li><a href="404.html">权限信息</a></li>
+			</ul>
+		</div>
+
+				<div class="clearfix"></div>
+			<div class="footer-bottom">
+				<p>Copyrights © 2016 Location All rights reserved | Template by xiyihai@yeah.net</p>
+			</div>
+		</div>
+	</div>
+
+
+	<!--这是一段添加景区时弹出框代码,默认看不见-->
+	<div class="modal fade" id="drawModal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="drawModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="drawModalLabel">注意事项</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="noteForRegion" class="control-label">操作提示:</label>
+							<input type="text" class="form-control" id="noteForRegion" disabled="disabled"
+								   value="输入景点名称，地图选取一中心和一个多边形作为覆盖域，一次画一个">
+						</div>
+						<div class="form-group">
+							<label for="nameForRegion" class="control-label">景点名称:</label>
+							<input type="text" class="form-control" id="nameForRegion">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button id="DIVdone" type="button" class="btn btn-primary">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/d3/d3.min.js"></script>
+	<script src="js/DrawingManager/index.js"></script>
+	<script src="js/Heatmap_min/index.js"></script>
+	<script src="js/require.js" data-main="tianjinJS/index/initDOM.js"></script>
+</body>
+</html>

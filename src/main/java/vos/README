@@ -1,0 +1,2 @@
+这里放置service层需要的数据格式对象
+把数据库中存储格式为String的points，neighbour_p等还原为list<Point>等熟悉的格式

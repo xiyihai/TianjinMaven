@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+ <struts>
+ 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />  
+    <constant name="struts.devMode" value="true" /> 
+    
+    <package name="HNSystem" namespace='' extends="json-default">
+    
+	    <!--  处理获得基站信息 -->
+        <action name="getBSDataAction" class="VoronoiDrawAction">
+        	<result type="json">
+                <param name="root">BSinfo</param>
+            </result>  
+        </action> 
+        
+       <!--  处理获得部分基站信息 -->
+       <action name="getPartBSDataAction" class="PartVoronoiDrawAction">
+       		<result type="json">
+       			<param name="root">BSinfo</param>
+       		</result>
+       </action>
+       
+        
+        <!--  处理获得cell信息 -->
+        <action name="getCellidInfoAction" class="CellidInfoAction">
+			<result type="json">
+				<param name="root">Cellinfo</param>
+			</result>
+        </action>
+        
+       <!--  获得已有Region信息 -->
+        <action name="getRegionAction" class="RegionAction">
+        	<result type="json">
+        		<param name="root">Regioninfo</param>
+        	</result>
+        </action>
+        
+        <!-- 自定义的Region写入数据库 -->
+        <action name="setDivRegionAction" class="DivRegionAction">
+        	<result name="success" type="json"></result>
+        	<result name="error"></result>
+        </action>
+        
+       <!--  获取城市信息 -->
+        <action name="getCountyAction" class="CountyAction">
+        	<result type="json">
+        		<param name="root">Countyinfo</param>
+        	</result>
+        </action>
+        
+        
+   		<!-- 获取查询基站信息 -->
+        <action name="searchBSAction" class="CellInfoSearchAction">
+        	<result type="json">
+        		<param name="root">BSinfo</param>
+        	</result>
+        </action>
+        
+        <!-- select2返回cellName选项 -->
+        <action name="select2CellAction" class="Select2CellAction">
+        	<result type="json">
+        		<param name="root">cellNameArray</param>
+        	</result>
+        </action>
+        
+        
+      	<!--  根据智能搜索查询基站 -->
+        <action name="S2ByNamesArrayAction" class="S2ByNamesArrayAction">
+        	<result type="json">
+        		<param name="root">BSinfo</param>
+        	</result>
+        </action>
+      
+      	<!-- 保存添加的基站信息 -->
+      	<action name="AddBSAction" class="AddBSAction">
+      		<result name="success"  type="json"></result>
+      		<result name="error"></result>
+      	</action>
+        
+        
+        <!-- 删除基站 -->
+        <action name="deleteBSAction" class="DeleteBSAction">
+        	<result type="json"></result>
+        </action>
+        
+      	<!--  根据时间戳返回对应的基站信息 -->
+        <action name="getTimestampAction" class="TimestampAction">
+        	<result type="json">
+        		<param name="root">BSinfo</param>
+        	</result>
+        </action>
+        
+        <action name="*">
+    		<result>TJpages/index.html</result>
+        </action>
+        
+    </package>
+
+   
+</struts>

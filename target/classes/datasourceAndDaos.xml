@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 配置数据源 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+			<property name="configLocations" value="classpath:hibernate.cfg.xml"></property>
+	</bean>
+
+	<!-- 为dao组件依赖注入session -->
+	<bean id="daoTemplate" abstract="true">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="VoronoiDao" class="daos.Impl.VoronoiDaoImpl" parent="daoTemplate"></bean>
+	<bean id="CellDao" class="daos.Impl.CellDaoImpl" parent="daoTemplate"></bean>
+	<bean id="RegionDao" class="daos.Impl.RegionDaoImpl" parent="daoTemplate"></bean>
+	<bean id="CountyDao" class="daos.Impl.CountyDaoImpl" parent="daoTemplate"></bean>
+	<bean id="TimestampDao" class="daos.Impl.TimestampDaoImpl" parent="daoTemplate"></bean>
+	
+	<!-- spring的属性加载器，加载properties文件中的属性 -->  
+	<bean id="propertyConfigurer"  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+    	<property name="location" value="classpath:config.properties"></property>  
+    </bean>
+</beans>

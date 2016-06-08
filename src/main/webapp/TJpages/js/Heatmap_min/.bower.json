@@ -1,0 +1,15 @@
+{
+  "name": "Heatmap_min",
+  "_cacheHeaders": {
+    "ETag": "\"3566919658\"",
+    "Last-Modified": "Thu, 12 Feb 2015 09:27:33 GMT",
+    "Content-Length": "3943",
+    "Content-Type": "text/javascript"
+  },
+  "_release": "e-tag:356691965",
+  "main": "index.js",
+  "_source": "http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js",
+  "_target": "*",
+  "_originalSource": "http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js",
+  "_direct": true
+}

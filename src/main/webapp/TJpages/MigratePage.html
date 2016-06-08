@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>城市迁徙可视化</title>
+    <link href="js/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--这个需要在echarts.js之前应用-->
+    <link href="js/datetimepicker-master/jquery.datetimepicker.css" rel="stylesheet">
+    <style type="text/css">
+        html,body {
+            width:100%;
+            height:100%;
+            margin:0;
+            padding:0;
+            font-family: Microsoft Yahei;
+        }
+        #mapCanvas {
+            height: 100%;
+            width:100%
+        }
+    </style>
+
+    <script src="http://api.map.baidu.com/api?v=2.0&ak=GKdQhXE5uZTCn0N33qajur0g"></script>
+    <script src="js/jquery/dist/jquery.min.js"></script>
+    <script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/datetimepicker-master/build/jquery.datetimepicker.full.min.js"></script>
+
+</head>
+<body>
+<div id="__elm__5" style="height:100%;width:100%;">
+    <div style="height:100%; position:absolute;top:10px;right:10px;z-index:9999">
+        <div id="contentWrapper" style="height:100%;width:400px" >
+            <div id="pager" style="height:100%">
+                <div >
+                    <!--下面是日历选择器-->
+                    <div id="datetimepicker"></div>
+
+                    <div class="container" style="margin-top:10px;" >
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary active" id="countyOut">
+                                <input type="radio" autocomplete="off" checked> 城市迁出图
+                            </label>
+                            <label class="btn btn-primary" id="countyIn">
+                                <input type="radio" autocomplete="off"> 城市迁入图
+                            </label>
+                        </div>
+                        <div style="color: white;margin:10px;display:inline">系统提示：正常</div>
+                    </div>
+
+                    <div class="container" style="margin-top:10px;color: gold" id = "cityLabel">
+                        <!--用来标识迁入还是迁出-->
+                    </div>
+                    <div class="container" style="margin-top:10px;height:100%">
+                        <table id="cityList" class="table table-hover" style="width:348px;margin-left:-10px;color:darkgray">
+                            <!--动态添加排名信息-->
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mapCanvas"></div>
+</div>
+<script src="js/require.js" data-main="tianjinJS/Migrate/MIGmain.js"></script>
+</body>
+</html>

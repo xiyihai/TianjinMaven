@@ -1,0 +1,15 @@
+{
+  "name": "DrawingManager",
+  "_cacheHeaders": {
+    "ETag": "\"144276187\"",
+    "Last-Modified": "Tue, 30 Dec 2014 10:16:22 GMT",
+    "Content-Length": "14828",
+    "Content-Type": "text/javascript"
+  },
+  "_release": "e-tag:144276187",
+  "main": "index.js",
+  "_source": "http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager.js",
+  "_target": "*",
+  "_originalSource": "http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager.js",
+  "_direct": true
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--每隔1800s，自动识别log4j是否有内容更改，更改则自动重新部署-->
+<Configuration monitorInterval="1800">
+
+	<!-- 定义日志的类型 -->
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %l - %msg%n"/>
+        </Console>
+
+		<!-- 每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档 -->
+        <RollingFile name="File" fileName="${sys:Tianjin.root}/WEB-INF/logs/Tianjinlogs.txt"
+        		filePattern="${sys:Tianjin.root}/WEB-INF/logs/$${date:yyyy-MM}/Tianjinlogs-%d{yyyy-MM-dd}-%i.txt.gz">
+            <Filters>
+            	<!-- 配置过滤级别(大于等于才能通过)，这里注意先后顺序 DENY必须放在最后-->
+      			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>  
+            </Filters>
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %l - %msg%n"/>
+   			<!-- 由于filePattern的存在不用设置文件个数了 -->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="2MB"/>
+            </Policies>
+            <!-- 压缩包最多保留20个 -->
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+
+    </Appenders>
+
+
+	<!-- 自定义框架日志级别和默认级别 -->
+     <Loggers>
+     	<!-- 这边name就是具体类名 -->
+	     <Logger name="org.hibernate" level="warn"/>
+         <Logger name="org.hibernate.SQL" level="warn"/>
+        
+        <!--建立一个默认的root的logger，只有level在warn之上通过-->
+        <Root level="warn">
+            <Appender-ref ref="Console"/>
+            <Appender-ref ref="File"/>
+        </Root>
+
+    </Loggers>
+
+</Configuration>

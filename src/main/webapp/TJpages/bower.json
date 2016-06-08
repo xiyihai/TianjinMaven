@@ -1,0 +1,28 @@
+{
+  "name": "HNpages",
+  "authors": [
+    "xiyihai <xiyihai@yeah.net>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.1",
+    "bootstrap": "^3.3.6",
+    "d3": "^3.5.16",
+    "DrawingManager": "http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager.js",
+    "select2": "https://github.com/select2/select2.git#^4.0.2",
+    "Heatmap_min": "http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js",
+    "jquery-validation": "^1.15.0"
+  }
+}

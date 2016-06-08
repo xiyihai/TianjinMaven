@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>about</title>
+	<link href="js/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Location Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+	<script src="js/jquery/dist/jquery.min.js"></script>
+	<script src="js/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+	<!-- Mega Menu -->
+	<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="js/megamenu.js"></script>
+	<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+	<!-- Mega Menu -->
+</head>
+<body>
+<!-- banner -->
+<div class="header">
+	<div class="container">
+		<div class="logo">
+			<a href="VoronoiDraw.html"><img src="images/logo.png" class="img-responsive" alt=""></a>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<div class="header-bottom">
+	<div class="container">
+		<div class="top-nav">
+			<span class="menu"> </span>
+			<ul class="navig megamenu skyblue">
+
+				<li><a href="#" class="scroll" onclick="return false;"><span> </span>移动基站图层</a>
+					<div class="megapanel">
+						<div class="na-left">
+							<ul class="grid-img-list">
+								<li><a href="#" id="voronoiAll" onclick="return false;">全局基站图层</a></li> |
+								<li><a href="#" id="voronoiPart" onclick="return false;">局部基站图层</a></li> |
+								<li><a href="#" id="heatmap" onclick="return false;">热力图</a></li> |
+								<li><a href="addbaseStation.html">增加基站信息</a></li>
+								<div class="clearfix"> </div>
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</li>
+
+				<li><a href="SearchBS.html" class="scroll"> <span class="service"> </span>基站搜索</a>
+					<div class="megapanel">
+						<div class="na-left">
+							<ul class="grid-img-list">
+								<li><a href="SearchBS.html">人流变化预测</a></li> |
+								<li><a href="DeleteBS.html">搜索并删除基站信息</a></li> |
+								<div class="clearfix"> </div>
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</li>
+
+				<li><a href="MigratePage.html" class="scroll"><span class="mail"> </span>人口迁移图</a></li>
+
+				<li><a href="#" id="divDraw" class="scroll" onclick="return false;"><span> </span>划定关注区域</a>
+					<div class="megapanel">
+						<div class="na-left">
+							<ul class="grid-img-list">
+								<li><a href="#" id="DIVsave" onclick="return false;">保存</a></li> |
+								<li><a href="#" id="DIVcancel" onclick="return false;">取消</a></li>
+								<div class="clearfix"> </div>
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</li>
+
+				<li><a href="HistorySearch.html" class="scroll"><span class="mail"> </span>历史数据查询</a></li>
+
+				<div class="clearfix"></div>
+			</ul>
+			<script>
+				$("span.menu").click(function(){
+					$(".top-nav ul").slideToggle(300, function(){
+					});
+				});
+			</script>
+		</div>
+		<div class="head-right">
+			<ul class="number">
+				<li><a id= "clearMap" href="#" onclick="return false;"><i class="roc"></i>清空地图</a></li>
+				<div class="clearfix"> </div>
+			</ul>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!-- about -->
+	<div class="about">
+		<div class="container">
+			<div class="about-top">
+				<div class="col-md-8 ab-tp">
+					<div class="who-we">
+						<h3>基站图层效果使用说明</h3>
+					</div>
+					<div class="we-who">
+						<h5>在移动基站图层选项下面，有四个不同选项，针对不同功能，适合不同的场景</h5>
+						<p>全局基站选项：一次性加载入所有的基站的信息，并渲染出所有基站点位置及其泰森多边形(颜色深浅决定人数多少)，优点是加载完毕之后，观察任何基站不需要再请求数据，缺点是第一次请求时加载数据量较大，请求时间较长。</p>
+						<p>局部基站选项：与全局基站相区别，只会加载屏幕内基站信息，并渲染出相应范围内基站点位置和泰森多边形(颜色深浅决定人数多少)，优点是加载数据量小，请求快，缺点是当屏幕范围变化时，还需要重新请求新的数据，这里注意不要把地图级别放的太小，会导致请求数据量巨大就和。</p>
+						<p>热力图选项：与通过泰森多边形描述人口数量适用场景不同，在大比例尺度下，泰森多边形几乎都是密密麻麻的点，无法很好的观察人口分布情况，此时热力图正适合大范围内观测。</p>
+						<p>增加基站信息选项：当需要添加一个新的基站时，点击此选项进入添加信息页面</p>
+					</div>
+						<div class="clearfix"> </div>
+				</div>
+				<div class="col-md-4 ab-tp">
+					<h3>基站搜索</h3>
+					<div class="abou-botm">
+						<h5>人流变化预测</h5>
+						<p>搜索基站有两种手段，智能查询，通过匹配输入提示字符确定所需要的基站(多选)，另一种是精确查询，通过输入cellid和name，把匹配到的基站都显示出来。单击相应的基站在下方会出现 针对此基站的人流分布预测，人流分布预测是根据实时更新的数据，然后预测出最新情况。</p>
+					</div>
+					<div class="abou-botm">
+						<h5>删除基站信息</h5>
+						<p>首先通过搜索出需要删除的基站，然后点击删除按钮即可把找到的基站信息删除，注意此操作不可逆。也可以开启局部基站功能进行更方便观察。</p>
+					</div>
+				</div>
+					<div class="clearfix"> </div>	
+			</div>
+			<div class="about-top">
+				<div class="col-md-4 ab-tp">
+					<h3>人口迁移图</h3>
+					<div class="abou-botm">
+						<h5>这里展示各个时间点，天津各大行政区互相迁移人口数量的图</h5>
+						<p>左上角选择查看某一个区域，然后也可以选择迁入迁出数据，和对应的时间点，地图上会显示相应的动态迁移图，在右下角会显示人口迁移量的排名。</p>
+					</div>
+				</div>
+				<div class="col-md-4 ab-tp">
+					<h3>划定关注区域</h3>
+					<div class="abou-botm">
+						<h5>这里通过划定特别关注区域，下次查看该地方会方便很多</h5>
+						<p>通过鼠标根据要求划定特别关注区域，即可刷新页面在地图下方搜索栏选择刚划定区域，这里图片需要自己添加。</p>
+					</div>
+				</div>
+				<div class="col-md-4 ab-tp">
+					<h3>历史数据查询</h3>
+					<div class="abou-botm">
+						<h5>根据时间点选择，查看此时刻人口数量</h5>
+						<p>选择一个历史时间点，然后点击 移动基站图层下方全局基站按钮，即可查看此时刻基站范围内人口数量分布图。当然若是选择的时间点无数据，则可选择相邻的时间点，并不是每分钟都会有数据过来。</p>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+
+	<!-- about -->
+<div class="footer">
+	<div class="container">
+		<div class="col-md-2 abo-foo1">
+			<h5>关于我们</h5>
+			<ul>
+				<li><a href="404.html">关于我们</a></li>
+				<li><a href="404.html">如何联系</a></li>
+				<li><a href="404.html">请求帮助</a></li>
+			</ul>
+		</div>
+		<div class="col-md-3 abo-foo">
+			<h5>操作说明</h5>
+			<ul>
+				<li><a href="about.html">基站图层使用说明</a></li>
+				<li><a href="about.html">基站搜索说明</a></li>
+				<li><a href="about.html">历史数据查询说明</a></li>
+				<li><a href="about.html">划定特定景区说明</a></li>
+				<li><a href="about.html">人口迁移图说明</a></li>
+			</ul>
+		</div>
+		<div class="col-md-2 abo-foo1">
+			<h5>地理位置</h5>
+			<p> 清华大学</p>
+			<p>	北京市海淀区</p>
+			<p>	东主楼10区 205</p>
+			<p>	Tel: 888-888-88888</p>
+		</div>
+		<div class="col-md-2 abo-foo1">
+			<h5>讨论专区</h5>
+			<ul>
+				<li><a href="404.html">评论</a></li>
+				<li><a href="404.html">发布版本信息</a></li>
+				<li><a href="404.html">权限信息</a></li>
+			</ul>
+		</div>
+
+		<div class="clearfix"></div>
+		<div class="footer-bottom">
+			<p>Copyrights © 2016 Location All rights reserved | Template by xiyihai@yeah.net</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>
