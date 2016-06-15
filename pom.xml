@@ -6,7 +6,7 @@
   <packaging>war</packaging>
   <version>3.0.0-alpha</version>
   <name>TianjinMaven Maven Webapp</name>
-  <url>10.1.1.252:7002/TianjinMaven/</url>
+  <url>10.1.1.144:8080/TianjinMaven/</url>
   
    <description>系统更新特性：
 1、采用maven重构项目，去除了无用jar包
