@@ -19,4 +19,4 @@
 
 - 针对特定区域进行人口预测
 
-**[Learn more](166.111.68.66:18080/TianjinMaven)**
+[Learn more](166.111.68.66:18080/TianjinMaven)
